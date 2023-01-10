@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import DialogModalAuth from './components/DialogModalAuth';
+import styled from 'styled-components';
 
-function App() {
+const Wrapper = styled.section`
+  min-height: 200px;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 10px;
+  background: rgb(143, 177, 208);
+  /*background: rgb(114, 141, 166);*/
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  text-align: center;
+`;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Title>Trello clone</Title>
+      <DialogModalAuth />
+    </Wrapper>
   );
 }
-
-export default App;
