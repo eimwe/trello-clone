@@ -5,7 +5,9 @@ import ButtonTemplate from "./Button";
 import iconClose from "../assets/icons/close.svg";
 
 const Container: any = styled.dialog`
-  width: 400px;
+  position: relative;
+  min-width: 300px;
+  padding: 2em;
   border-radius: 8px;
   border: 1px solid #888;
 
@@ -14,18 +16,23 @@ const Container: any = styled.dialog`
   }
 `;
 
-const DeleteButton = styled(ButtonTemplate)`
-  display: block;
+const CloseButton = styled(ButtonTemplate)`
+  position: absolute;
+  top: 1em;
+  right: 1em;
   min-width: 24px;
   min-height: 24px;
   margin-inline-start: auto;
   background-image: url(${iconClose});
 `;
 
+const HeadingLevel2 = styled.h2`
+  text-align: center;
+`;
+
 type Props = {
   title: string;
   isOpened: boolean;
-  onProceed: () => void;
   onClose: () => void;
   children: React.ReactNode;
 };
@@ -53,8 +60,10 @@ const DialogModal = ({
   return (
     <Container ref={ref} onCancel={onClose} onClick={onClose}>
       <div onClick={preventAutoClose}>
-      <DeleteButton onClick={onClose} />
-        <h2>{title}</h2>
+        <CloseButton onClick={onClose} />
+        <HeadingLevel2>
+          {title}
+        </HeadingLevel2>
 
         {children}
 
