@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import ButtonTemplate from "./Button";
+//@ts-ignore
+import iconClose from "../assets/icons/close.svg";
 
 const Container: any = styled.dialog`
   width: 400px;
@@ -11,9 +14,12 @@ const Container: any = styled.dialog`
   }
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  gap: 20px;
+const DeleteButton = styled(ButtonTemplate)`
+  display: block;
+  min-width: 24px;
+  min-height: 24px;
+  margin-inline-start: auto;
+  background-image: url(${iconClose});
 `;
 
 type Props = {
@@ -27,7 +33,6 @@ type Props = {
 const DialogModal = ({
   title,
   isOpened,
-  onProceed,
   onClose,
   children,
 }: Props) => {
@@ -43,24 +48,16 @@ const DialogModal = ({
     }
   }, [isOpened]);
 
-  const proceedAndClose = () => {
-    onProceed();
-    onClose();
-  };
-
   const preventAutoClose = (e: React.MouseEvent) => e.stopPropagation();
 
   return (
     <Container ref={ref} onCancel={onClose} onClick={onClose}>
       <div onClick={preventAutoClose}>
+      <DeleteButton onClick={onClose} />
         <h2>{title}</h2>
 
         {children}
 
-        <Buttons>
-          <button onClick={proceedAndClose}>Proceed</button>
-          <button onClick={onClose}>Close</button>
-        </Buttons>
       </div>
     </Container>
   );
