@@ -26,6 +26,10 @@ body {
   background-color: var(--bg-body);
 }
 
+body.modal-open {
+  overflow: hidden; /* see "modal-open" in 'dialog-modal.tsx' */
+}
+
 .sr-only span {
   position: absolute;
   width: 1px;
