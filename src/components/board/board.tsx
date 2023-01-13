@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DialogModalAuth from '../DialogModalAuth';
+import AuthModal from '../authorization/auth-modal';
 
 const Wrapper = styled.section`
   min-height: 200px;
@@ -19,7 +19,7 @@ const Board = () => {
   return (
     <Wrapper>
       <Title>Trello clone</Title>
-      <DialogModalAuth />
+      <AuthModal />
     </Wrapper>
   );
 }

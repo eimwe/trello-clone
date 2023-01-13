@@ -1,22 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import DialogModal from "./DialogModal";
-import ButtonTemplate from "./Button";
-
-const SubmitButton = styled(ButtonTemplate)`
-  display: block;
-  min-width: 25%;
-  min-height: 25px;
-  margin-inline: auto;
-  border-radius: 4px;
-  text-transform: uppercase;
-  background-color: rgb(143, 208, 207);
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgb(128, 187, 186);
-  }
-`;
+import DialogModal from "../modal/dialog-modal";
+import StyledButton from "../ui/button/button";
 
 const TextInput = styled.input`
   display: block;
@@ -58,10 +43,11 @@ const DialogModalAuth = () => {
           onChange={(e) => setUserName(e.target.value)}
           placeholder="Enter your name"
         />
-        <SubmitButton
+        <StyledButton
           type="submit"
           title="ok"
           onClick={() => setIsOpened(false)}
+          variant='named'
         />
       </form>
     </DialogModal>
