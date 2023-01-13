@@ -1,22 +1,8 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import DialogModal from "./DialogModal";
-import ButtonTemplate from "./Button";
-
-const SubmitButton = styled(ButtonTemplate)`
-  display: block;
-  min-width: 25%;
-  min-height: 25px;
-  margin-inline: auto;
-  border-radius: 4px;
-  text-transform: uppercase;
-  background-color: rgb(143, 208, 207);
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgb(128, 187, 186);
-  }
-`;
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import DialogModal from '../modal/dialog-modal';
+import StyledButton from '../ui/button/button';
+import StorageService from '../../hooks/storage-service';
 
 const TextInput = styled.input`
   display: block;
@@ -30,18 +16,15 @@ const TextInput = styled.input`
 
 const DialogModalAuth = () => {
   const [isOpened, setIsOpened] = useState(false);
-  const [userName, setUserName] = useState (() => {
-    const savedItem = localStorage.getItem("userName");
-    const parsedItem = JSON.parse(savedItem !);
-    return parsedItem || "";
-  });
+  const [userName, setUserName] = StorageService<string>('Username', '');
 
   useEffect(() => {
-    setIsOpened(true);
     if (userName.length > 0) {
-      localStorage.setItem("Username", JSON.stringify(userName));
+      localStorage.setItem('Username', JSON.stringify(userName));
+    } else {
+      setIsOpened(true);
     }
-  }, [userName])
+  }, [userName]);
 
   return (
     <DialogModal
@@ -58,10 +41,11 @@ const DialogModalAuth = () => {
           onChange={(e) => setUserName(e.target.value)}
           placeholder="Enter your name"
         />
-        <SubmitButton
+        <StyledButton
           type="submit"
           title="ok"
           onClick={() => setIsOpened(false)}
+          variant='named'
         />
       </form>
     </DialogModal>

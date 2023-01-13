@@ -1,29 +1,14 @@
-import { useEffect, useRef } from "react";
-import styled from "styled-components";
-import ButtonTemplate from "./Button";
-//@ts-ignore
-import iconClose from "../assets/icons/close.svg";
+import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import StyledButton from '../ui/button/button';
+import CloseIcon from '../../assets/icons/close-icon';
 
-const Container: any = styled.dialog`
+const Container = styled.dialog`
   position: relative;
   min-width: 300px;
   padding: 2em;
   border-radius: 8px;
-  border: 1px solid #888;
-
-  ::backdrop {
-    background: rgba(0, 0, 0, 0.3);
-  }
-`;
-
-const CloseButton = styled(ButtonTemplate)`
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  min-width: 24px;
-  min-height: 24px;
-  margin-inline-start: auto;
-  background-image: url(${iconClose});
+  border: 1px solid var(--clr-border);
 `;
 
 const HeadingLevel2 = styled.h2`
@@ -43,7 +28,7 @@ const DialogModal = ({
   onClose,
   children,
 }: Props) => {
-  const ref: any = useRef(null);
+  const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     if (isOpened) {
@@ -60,7 +45,13 @@ const DialogModal = ({
   return (
     <Container ref={ref} onCancel={onClose} onClick={onClose}>
       <div onClick={preventAutoClose}>
-        <CloseButton onClick={onClose} />
+        <StyledButton
+          className='sr-only'
+          title='Close modal'
+          icon={<CloseIcon />}
+          onClick={onClose}
+          variant='unnamed'
+        />
         <HeadingLevel2>
           {title}
         </HeadingLevel2>

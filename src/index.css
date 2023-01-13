@@ -1,5 +1,10 @@
 :root {
   --bg-body: rgb(159, 197, 232);
+  --bg-board: rgb(143, 177, 208);
+  --bg-button: transparent;
+  --bg-submit: rgb(143, 208, 207);
+  --bg-submit-hovered: rgb(128, 187, 186);
+  --clr-border: #888;
   --font-family: 'Arial', sans-serif;
   --font-size: 1rem;
 }
@@ -19,4 +24,20 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size); 
   background-color: var(--bg-body);
+}
+
+body.modal-open {
+  overflow: hidden; /* see "modal-open" in 'dialog-modal.tsx' */
+}
+
+.sr-only span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
