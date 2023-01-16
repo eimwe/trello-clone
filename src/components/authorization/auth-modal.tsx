@@ -24,6 +24,7 @@ const DialogModalAuth = () => {
     >
       <form
         onSubmit = {(e) => e.preventDefault()}
+        className="grid-container"
       >
         <Input 
           type="text"
