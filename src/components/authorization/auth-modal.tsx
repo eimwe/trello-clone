@@ -1,18 +1,8 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import DialogModal from '../modal/dialog-modal';
 import Button from '../ui/button/button';
+import Input from '../ui/input/input';
 import StorageService from '../../hooks/storage-service';
-
-const TextInput = styled.input`
-  display: block;
-  min-width: 50%;
-  min-height: 25px;
-  padding-block: 0;
-  margin-inline: auto;
-  margin-block-end: 1em;
-  border-radius: 4px;
-`;
 
 const DialogModalAuth = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -35,11 +25,11 @@ const DialogModalAuth = () => {
       <form
         onSubmit = {(e) => e.preventDefault()}
       >
-        <TextInput
+        <Input 
           type="text"
           value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          placeholder="Enter your name"
+          onChange={(e) => setUserName((e.target as HTMLInputElement).value)}
+          placeholder="Enter your name"  
         />
         <Button
           type="submit"
