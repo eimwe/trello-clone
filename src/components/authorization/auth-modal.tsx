@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DialogModal from '../modal/dialog-modal';
-import StyledButton from '../ui/button/button';
+import Button from '../ui/button/button';
 import StorageService from '../../hooks/storage-service';
 
 const TextInput = styled.input`
@@ -41,11 +41,10 @@ const DialogModalAuth = () => {
           onChange={(e) => setUserName(e.target.value)}
           placeholder="Enter your name"
         />
-        <StyledButton
+        <Button
           type="submit"
           title="ok"
           onClick={() => setIsOpened(false)}
-          variant='named'
         />
       </form>
     </DialogModal>
