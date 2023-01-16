@@ -1,19 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import StyledButton from '../ui/button/button';
+import Icon from '../ui/icon/icon';
 import CloseIcon from '../../assets/icons/close-icon';
-
-const Container = styled.dialog`
-  position: relative;
-  min-width: 300px;
-  padding: 2em;
-  border-radius: 8px;
-  border: 1px solid var(--clr-border);
-`;
-
-const HeadingLevel2 = styled.h2`
-  text-align: center;
-`;
 
 type Props = {
   title: string;
@@ -45,12 +33,11 @@ const DialogModal = ({
   return (
     <Container ref={ref} onCancel={onClose} onClick={onClose}>
       <div onClick={preventAutoClose}>
-        <StyledButton
+        <Icon
           className='sr-only'
           title='Close modal'
           icon={<CloseIcon />}
           onClick={onClose}
-          variant='unnamed'
         />
         <HeadingLevel2>
           {title}
@@ -62,5 +49,17 @@ const DialogModal = ({
     </Container>
   );
 };
+
+const Container = styled.dialog`
+  position: relative;
+  min-width: 300px;
+  padding: 2em;
+  border-radius: 8px;
+  border: 1px solid var(--clr-border);
+`;
+
+const HeadingLevel2 = styled.h2`
+  text-align: center;
+`;
 
 export default DialogModal;

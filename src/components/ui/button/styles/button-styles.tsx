@@ -1,27 +1,28 @@
 const buttonStyles = {
-  named: () => `
-    min-width: 25%;
-    min-height: 25px;
-    margin-inline: auto;
-    border-radius: 4px;
+  primary: () => `  
     text-transform: uppercase;
-    background-color: var(--bg-submit);
+    background-color: var(--bg-primary);
 
     &:hover {
-      background-color: var(--bg-submit-hovered);
+      background-color: var(--bg-primary-hovered);
     }
   `,
 
-  unnamed: () => `
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    padding: 0.25em;
-    margin-inline-start: auto;
+  secondary: () => `
+    background-color: var(--bg-secondary);
+
+    &:hover {
+      background-color: var(--bg-secondary-hovered);
+    }
   `,
 
-  anchored: () => `
-    justify-content: space-between;
+  danger: () => `
+    color: var(--clr-font-white);
+    background-color: var(--bg-danger);
+
+    &:hover {
+      background-color: var(--bg-danger-hovered);
+    }
   `,
 };
 
