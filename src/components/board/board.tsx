@@ -3,11 +3,18 @@ import AuthModal from '../authorization/auth-modal';
 import Column from '../column/column';
 
 const Board = () => {
+  const columnNames = [
+    'TODO',
+    'In Progress',
+    'Testing',
+    'Done'
+  ];
+
   return (
     <Wrapper>
       <Title>Trello clone</Title>
       <ColumnContainer>
-        <Column />
+        <Column columnNames={columnNames} />
       </ColumnContainer>
       <AuthModal />
     </Wrapper>
