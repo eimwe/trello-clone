@@ -4,6 +4,7 @@ import { HTMLAttributes, FC } from 'react';
 interface InputProps {
   type: string;
   value: string;
+  autoFocus?: boolean;
 };
 
 const Input:FC<InputProps & HTMLAttributes<HTMLInputElement>> = ({

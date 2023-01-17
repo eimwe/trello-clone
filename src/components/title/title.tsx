@@ -16,6 +16,14 @@ const Title:FC<HTMLAttributes<HTMLHeadingElement>> = ({
     }
   }, [columnTitle]);
 
+  const editInput = () => {
+    if (columnTitle.length === 0) {
+      setColumnTitle('Default');
+    }
+
+    setIsOpened(false);
+  }
+
   return (
     <div>
       {isOpened ? (
@@ -25,8 +33,9 @@ const Title:FC<HTMLAttributes<HTMLHeadingElement>> = ({
         onChange={(e) => {
           setColumnTitle((e.target as HTMLInputElement).value)
         }}
-        onBlur={() => setIsOpened(false)}
-        placeholder="Enter column name" />
+        onBlur={editInput}
+        placeholder="Enter column name"
+        autoFocus />
       ) : (
         <StyledTitle
         onClick={() => setIsOpened(true)}
