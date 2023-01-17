@@ -4,15 +4,22 @@ import styled from 'styled-components';
 import Input from '../ui/input/input';
 import StorageService from '../../hooks/storage-service';
 
-const Title:FC<HTMLAttributes<HTMLHeadingElement>> = ({
+interface ColumnProps {
+  index: number;
+  columnName: string;
+}
+
+const Title:FC<ColumnProps & HTMLAttributes<HTMLHeadingElement>> = ({
+  index,
+  columnName,
   ...props
 }) => {
   const [isOpened, setIsOpened] = useState(false);
-  const [columnTitle, setColumnTitle] = StorageService<string>('Columnname', '');
+  const [columnTitle, setColumnTitle] = StorageService<string>(`Columnname-${index}`, columnName);
 
   useEffect(() => {
     if (columnTitle.length > 0) {
-      localStorage.setItem('Columnname', JSON.stringify(columnTitle));
+      localStorage.setItem(`Columnname-${index}`, JSON.stringify(columnTitle));
     }
   }, [columnTitle]);
 
@@ -28,6 +35,7 @@ const Title:FC<HTMLAttributes<HTMLHeadingElement>> = ({
     <div>
       {isOpened ? (
         <Input 
+        data-id={index}
         type="text"
         value={columnTitle}
         onChange={(e) => {
