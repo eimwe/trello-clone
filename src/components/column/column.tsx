@@ -3,18 +3,38 @@ import Title from '../title/title';
 import Button from '../ui/button/button';
 import AddIcon from '../../assets/icons/add-icon';
 
-const Column = () => {
+interface BoardProps {
+  columnNames: string[];
+}
+
+const Column: React.FC<BoardProps> = (props: BoardProps) => {
+
+  const columnNames = props.columnNames.map((name, index) => {    
+
+    return (
+      <StyledColumn
+        key={index}
+        className="grid-container"
+      >
+        <Title
+          index={index}
+          columnName={name}
+        />
+        <Button
+          type="button"
+          title="Add card"
+          icon={<AddIcon />}
+          onClick={() => console.log('card added')}
+          variant="secondary"
+        />
+      </StyledColumn>
+    );
+  });
+
   return (
-    <StyledColumn className="grid-container">
-      <Title />
-      <Button
-        type="button"
-        title="Add card"
-        icon={<AddIcon />}
-        onClick={() => console.log('card added')}
-        variant="secondary"
-      />
-    </StyledColumn>
+    <>
+      { columnNames }
+    </>
   );
 }
 
