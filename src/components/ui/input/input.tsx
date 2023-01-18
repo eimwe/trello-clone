@@ -3,7 +3,7 @@ import { HTMLAttributes, FC } from 'react';
 
 interface InputProps {
   type: string;
-  value: string;
+  value?: string;
   autoFocus?: boolean;
 };
 
