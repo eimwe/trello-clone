@@ -4,21 +4,21 @@ import Button from '../ui/button/button';
 import AddIcon from '../../assets/icons/add-icon';
 
 interface BoardProps {
-  columnNames: string[];
+  columns: { id: number, title: string }[];
 }
 
 const Column: React.FC<BoardProps> = (props: BoardProps) => {
 
-  const columnNames = props.columnNames.map((name, index) => {    
+  const renderedColumns = props.columns.map(column => {
 
     return (
       <StyledColumn
-        key={index}
+        key={column.id}
         className="grid-container"
       >
         <Title
-          index={index}
-          columnName={name}
+          index={column.id}
+          columnName={column.title}
         />
         <Button
           type="button"
@@ -33,7 +33,7 @@ const Column: React.FC<BoardProps> = (props: BoardProps) => {
 
   return (
     <>
-      { columnNames }
+      { renderedColumns }
     </>
   );
 }
