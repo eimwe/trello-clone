@@ -1,8 +1,7 @@
-import { HTMLAttributes, FC } from 'react';
-import { useState, useEffect } from 'react';
+import { HTMLAttributes, FC, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../ui/input/input';
-import StorageService from '../../hooks/storage-service';
+import StorageService from '../../services/storage';
 
 interface ColumnProps {
   index: number;
@@ -15,20 +14,26 @@ const Title:FC<ColumnProps & HTMLAttributes<HTMLHeadingElement>> = ({
   ...props
 }) => {
   const [isOpened, setIsOpened] = useState(false);
-  const [columnTitle, setColumnTitle] = StorageService<string>(`Columnname-${index}`, columnName);
+  const [columnHeading, setColumnHeading] = useState(columnName);
 
-  useEffect(() => {
-    if (columnTitle.length > 0) {
-      localStorage.setItem(`Columnname-${index}`, JSON.stringify(columnTitle));
-    }
-  }, [columnTitle]);
+  const setColumnTitle = (id: number, newTitle: string) => {
+    const receivedColumns = StorageService.getColumns();
 
-  const editInput = () => {
-    if (columnTitle.length === 0) {
-      setColumnTitle('Default');
-    }
+    const updatedColumns = receivedColumns.map(column => {
+      if (id === column.id) {
+        column.title = newTitle;
+        setColumnHeading(column.title);
+      }
 
-    setIsOpened(false);
+      if (column.title.length === 0) {
+        column.title = 'Column name';
+        setColumnHeading(column.title);
+      }
+
+      return {id: column.id, title: column.title};
+    });
+
+    StorageService.setColumns(updatedColumns);
   }
 
   return (
@@ -37,18 +42,16 @@ const Title:FC<ColumnProps & HTMLAttributes<HTMLHeadingElement>> = ({
         <Input 
         data-id={index}
         type="text"
-        value={columnTitle}
-        onChange={(e) => {
-          setColumnTitle((e.target as HTMLInputElement).value)
-        }}
-        onBlur={editInput}
+        value={columnHeading}
+        onChange={(e) => setColumnTitle(index, (e.target as HTMLInputElement).value)}
+        onBlur={() => setIsOpened(false)}
         placeholder="Enter column name"
         autoFocus />
       ) : (
         <StyledTitle
         onClick={() => setIsOpened(true)}
         {...props}>
-          {columnTitle}
+          {columnHeading}
         </StyledTitle>
       )}
     </div>
