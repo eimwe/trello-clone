@@ -60,6 +60,7 @@ const Wrapper = styled.section`
 const Title = styled.h1`
   margin: 0;
   text-align: center;
+  margin-block-end: 1em;
 `;
 
 const ColumnContainer = styled.div`
