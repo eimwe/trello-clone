@@ -1,20 +1,48 @@
 import styled from 'styled-components';
 import AuthModal from '../authorization/auth-modal';
 import Column from '../column/column';
+import StorageService from '../../services/storage';
 
 const Board = () => {
-  const columnNames = [
-    'TODO',
-    'In Progress',
-    'Testing',
-    'Done'
-  ];
+
+  const provideColumnData = () => {
+    let columns: { id: number, title: string }[] = [];
+
+    const existingColumns = StorageService.getColumns();
+
+    if (existingColumns.length > 0) {
+      columns = existingColumns;
+    } else {
+      columns = [
+        {
+          id: 0,
+          title: 'TODO'
+        },
+        {
+          id: 1,
+          title: 'In Progress'
+        },
+        {
+          id: 2,
+          title: 'Testing'
+        },
+        {
+          id: 3,
+          title: 'Done'
+        }
+      ];
+
+      StorageService.setColumns(columns);
+    }
+
+    return columns;
+  }
 
   return (
     <Wrapper>
       <Title>Trello clone</Title>
       <ColumnContainer>
-        <Column columnNames={columnNames} />
+        <Column columns={provideColumnData()} />
       </ColumnContainer>
       <AuthModal />
     </Wrapper>
