@@ -6,13 +6,15 @@
   --bg-primary-hovered: rgb(102, 149, 125);
   --bg-secondary: rgb(143, 208, 207);
   --bg-secondary-hovered: rgb(128, 187, 186);
-  --bg-danger: rgb(160, 0, 0);
-  --bg-danger-hovered: rgb(128, 0, 0);
+  --bg-danger: rgb(188, 76, 76);
+  --bg-danger-hovered: rgb(150, 60, 60);
+  --bg-card: rgb(128, 159, 187);
   --clr-border: #888;
   --clr-font-white: rgb(255, 255, 255);
   --font-family: 'Arial', sans-serif;
   --font-size: 1rem;
   --radius-block: 10px;
+  --duration: 300ms;
 }
 
 html {
@@ -53,8 +55,12 @@ body.modal-open {
 
 .grid-container {
   display: grid;
-  justify-items: center;
   gap: 1em;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
 }
 
 .sr-only span {
