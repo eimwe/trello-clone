@@ -3,9 +3,22 @@ type Columns = Array<{
   title: string;
 }>
 
+type Cards = Array<{
+  id: number;
+  title: string;
+  columnId: number;
+}>
+
+interface Card {
+  id: number;
+  title: string;
+  columnId: number;
+}
+
 class StorageService {
   private readonly userNameKey = 'user-name';
-  private readonly columnKey = 'column-title';
+  private readonly columnKey = 'columns';
+  private readonly cardKey = 'cards';
 
   getUserName() {
     return localStorage.getItem(this.userNameKey);
@@ -23,6 +36,18 @@ class StorageService {
 
   setColumns(columns: Columns) {
     localStorage.setItem(this.columnKey, JSON.stringify(columns));
+  }
+
+  getCards() {
+    const cards = localStorage.getItem(this.cardKey);
+
+    return cards ? (JSON.parse(cards) as Cards) : null;
+  }
+
+  setCard(card: Card) {
+    const exisitingCards = this.getCards();
+
+    localStorage.setItem(this.cardKey, JSON.stringify(exisitingCards ? [...exisitingCards, card] : [card]));
   }
 }
 
