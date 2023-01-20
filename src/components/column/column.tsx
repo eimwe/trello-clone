@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Title from '../title/title';
-import Button from '../ui/button/button';
-import AddIcon from '../../assets/icons/add-icon';
+import ListBuilder from '../list-builder/list-builder';
 
 interface BoardProps {
   columns: { id: number, title: string }[];
@@ -20,12 +19,8 @@ const Column: React.FC<BoardProps> = (props: BoardProps) => {
           index={column.id}
           columnName={column.title}
         />
-        <Button
-          type="button"
-          title="Add card"
-          icon={<AddIcon />}
-          onClick={() => console.log('card added')}
-          variant="secondary"
+        <ListBuilder
+          columnId={column.id}
         />
       </StyledColumn>
     );
@@ -39,6 +34,7 @@ const Column: React.FC<BoardProps> = (props: BoardProps) => {
 }
 
 const StyledColumn = styled.section`
+  grid-template-rows: min-content;
   padding: 1em;
   border-radius: var(--radius-block);
   background-color: var(--bg-body);
