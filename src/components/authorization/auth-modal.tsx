@@ -2,19 +2,17 @@ import { useState, useEffect } from 'react';
 import DialogModal from '../modal/dialog-modal';
 import Button from '../ui/button/button';
 import Input from '../ui/input/input';
-import StorageService from '../../hooks/storage-service';
+import StorageService from '../../services/storage';
 
 const DialogModalAuth = () => {
   const [isOpened, setIsOpened] = useState(false);
-  const [userName, setUserName] = StorageService<string>('Username', '');
+  const authorName = StorageService.getUserName();
 
   useEffect(() => {
-    if (userName.length > 0) {
-      localStorage.setItem('Username', JSON.stringify(userName));
-    } else {
+    if (!authorName) {
       setIsOpened(true);
     }
-  }, [userName]);
+  }, [authorName]);
 
   return (
     <DialogModal
@@ -24,11 +22,11 @@ const DialogModalAuth = () => {
     >
       <form
         onSubmit = {(e) => e.preventDefault()}
+        className="grid-container"
       >
         <Input 
           type="text"
-          value={userName}
-          onChange={(e) => setUserName((e.target as HTMLInputElement).value)}
+          onChange={(e) => StorageService.setUserName((e.target as HTMLInputElement).value)}
           placeholder="Enter your name"  
         />
         <Button

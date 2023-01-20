@@ -1,35 +1,24 @@
 import styled from 'styled-components';
+import { HTMLAttributes, FC } from 'react';
 
-type InputProps = {
+interface InputProps {
   type: string;
-  value: string;
-  onChange: (e: React.SyntheticEvent) => void;
-  placeholder: string;
+  value?: string;
+  autoFocus?: boolean;
 };
 
-const Input = ({
-  type,
-  value,
-  onChange,
-  placeholder,
-}: InputProps) => {
+const Input:FC<InputProps & HTMLAttributes<HTMLInputElement>> = ({
+  ...props
+}) => {
   return (
     <TextInput
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
+      {...props}
     />
   );
 };
 
 const TextInput = styled.input`
-  display: block;
-  min-width: 50%;
-  min-height: 25px;
-  padding-block: 0;
-  margin-inline: auto;
-  margin-block-end: 1em;
+  padding-block: 0.25em;
   border-radius: 4px;
 `;
 
