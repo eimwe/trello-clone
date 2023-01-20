@@ -24,6 +24,18 @@ const buttonStyles = {
       background-color: var(--bg-danger-hovered);
     }
   `,
+
+  info: () => `
+    background-color: var(--bg-transparent);
+
+    & svg {
+      transition: transform var(--duration);
+    }
+
+    &:hover svg {
+      transform: rotate(-180deg)
+    }
+  `,
 };
 
 export default buttonStyles;

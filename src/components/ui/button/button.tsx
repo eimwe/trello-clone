@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, FC } from 'react';
 import styled from 'styled-components';
 import buttonStyles from './styles/button-styles';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'info';
 
 interface ButtonProps {
   variant?: ButtonVariant;
@@ -28,6 +28,8 @@ const StyledButton = styled.button<{$variant: ButtonVariant}>`
   padding-block: 0.25em;
   padding-inline: 1em;
   margin-inline: auto;
+  /*align-self: end;*/
+  margin-block-start: auto;
   border-radius: 4px;
   text-transform: capitalize;
   background-repeat: no-repeat;
