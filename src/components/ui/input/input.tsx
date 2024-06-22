@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { HTMLAttributes, FC } from 'react';
 
-interface InputProps {
-  type: string;
-  value?: string;
-  autoFocus?: boolean;
-};
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input:FC<InputProps & HTMLAttributes<HTMLInputElement>> = ({
   ...props
